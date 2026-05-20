@@ -1,13 +1,16 @@
 CSS
 
 #contenedor {
-    width: 960px;
-    height: 800px;
+    #contenedor {
+    width: 90%;
+    max-width: 960px;
+    min-height: 800px;
     background-color: #e8e8e8;
     margin-left: auto;
     margin-right: auto;
 }
- 
+  
+
 #cabecera {
     width: 100%;
     height: 150px;
@@ -15,46 +18,47 @@ CSS
     display: grid;
     place-items: center;
 }
- 
+
 #cabecera h1 {
     color: #00d4ff;
     font-family: Arial, sans-serif;
     font-size: 40px;
     margin: 0;
 }
- 
+
 #cabecera p {
     color: #cccccc;
     font-family: Arial, sans-serif;
     font-size: 14px;
     margin: 0;
 }
- 
+
 #contenido {
     width: 100%;
-    height: 600px;
     background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 0;
 }
- 
+
 .caja_cont {
     width: 290px;
-    height: 580px;
-    float: left;
+    min-height: 500px;
     background-color: #ffffff;
-    margin: 10px;
     border: 2px solid #1a1a2e;
     border-radius: 8px;
- 
-    /* centrar contenido (técnica del profe) */
     display: grid;
     place-items: center;
+    padding: 20px 0;
 }
- 
+
 .caja_cont img {
     width: 80px;
     height: 80px;
 }
- 
+
 .caja_cont h2 {
     font-family: Arial, sans-serif;
     color: #1a1a2e;
@@ -62,7 +66,7 @@ CSS
     text-align: center;
     margin: 10px 0 6px;
 }
- 
+
 .caja_cont p {
     font-family: Arial, sans-serif;
     color: #555555;
@@ -70,7 +74,25 @@ CSS
     text-align: center;
     padding: 0 16px;
 }
- 
+
+.btn_contacto {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 24px;
+    background-color: #1a1a2e;
+    color: #00d4ff;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.btn_contacto:hover {
+    background-color: #00d4ff;
+    color: #1a1a2e;
+}
+
 #pie {
     width: 100%;
     height: 50px;
@@ -78,46 +100,34 @@ CSS
     display: grid;
     place-items: center;
 }
- 
+
 #pie p {
     color: #cccccc;
     font-family: Arial, sans-serif;
     font-size: 13px;
     margin: 0;
 }
- 
- 
-/* ================================
-   TABLET  — entre 600px y 1023px
-================================ */
- 
+
+/* TABLET */
 @media all and (min-width: 600px) and (max-width: 1023px) {
     #contenedor {
         width: 580px;
     }
- 
     .caja_cont {
         width: 170px;
     }
 }
- 
- 
-/* ================================
-   MOBILE  — hasta 599px
-================================ */
- 
+
+/* MOBILE */
 @media all and (max-width: 599px) {
     #contenedor {
         width: 90%;
         height: auto;
     }
- 
     #contenido {
         height: auto;
     }
- 
     .caja_cont {
-        float: none;
         width: auto;
         height: auto;
         margin: 10px 0;
