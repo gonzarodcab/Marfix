@@ -1,136 +1,303 @@
-CSS
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap');
 
-#contenedor {
-    #contenedor {
-    width: 90%;
-    max-width: 960px;
-    min-height: 800px;
-    background-color: #e8e8e8;
-    margin-left: auto;
-    margin-right: auto;
+/* ── RESET & VARIABLES ─────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --dark:    #0d0d14;
+    --mid:     #16162a;
+    --accent:  #00e5ff;
+    --accent2: #7b5cfa;
+    --light:   #f4f4f8;
+    --muted:   #9090b0;
+    --card-bg: #ffffff;
+    --radius:  14px;
 }
-  
 
+body {
+    background: var(--light);
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* ── CONTENEDOR ─────────────────────────────────────── */
+#contenedor {
+    width: 90%;
+    max-width: 980px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── HEADER ─────────────────────────────────────────── */
 #cabecera {
-    width: 100%;
-    height: 150px;
-    background-color: #1a1a2e;
-    display: grid;
-    place-items: center;
+    background: var(--dark);
+    padding: 48px 40px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* línea de acento decorativa */
+#cabecera::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent), transparent);
+}
+
+/* círculo decorativo de fondo */
+#cabecera::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,229,255,0.10) 0%, transparent 70%);
+    pointer-events: none;
 }
 
 #cabecera h1 {
-    color: #00d4ff;
-    font-family: Arial, sans-serif;
-    font-size: 40px;
-    margin: 0;
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+
+#cabecera h1 span {
+    color: var(--accent);
 }
 
 #cabecera p {
-    color: #cccccc;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    margin: 0;
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 300;
+    letter-spacing: 0.04em;
 }
 
+/* ── SECCIÓN SERVICIOS ──────────────────────────────── */
 #contenido {
-    width: 100%;
-    background-color: #f0f0f0;
+    flex: 1;
+    background: var(--light);
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
-    padding: 10px 0;
+    gap: 24px;
+    padding: 48px 20px;
 }
 
+/* ── CARDS ──────────────────────────────────────────── */
 .caja_cont {
-    width: 290px;
-    min-height: 500px;
-    background-color: #ffffff;
-    border: 2px solid #1a1a2e;
-    border-radius: 8px;
-    display: grid;
-    place-items: center;
-    padding: 20px 0;
+    width: 280px;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    border: 1.5px solid #e2e2ee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 36px 24px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    box-shadow: 0 2px 12px rgba(13,13,20,0.06);
 }
 
+/* borde superior de acento */
+.caja_cont::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 4px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.caja_cont:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(13,13,20,0.12);
+    border-color: #c8c8e0;
+}
+
+.caja_cont:hover::before { opacity: 1; }
+
+/* ícono */
 .caja_cont img {
-    width: 80px;
-    height: 80px;
+    width: 72px;
+    height: 72px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 4px 8px rgba(0,229,255,0.18));
 }
 
 .caja_cont h2 {
-    font-family: Arial, sans-serif;
-    color: #1a1a2e;
-    font-size: 20px;
-    text-align: center;
-    margin: 10px 0 6px;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 10px;
 }
 
 .caja_cont p {
-    font-family: Arial, sans-serif;
-    color: #555555;
-    font-size: 14px;
-    text-align: center;
-    padding: 0 16px;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    flex: 1;
 }
 
+/* ── BOTÓN ──────────────────────────────────────────── */
 .btn_contacto {
     display: inline-block;
-    margin-top: 12px;
-    padding: 10px 24px;
-    background-color: #1a1a2e;
-    color: #00d4ff;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 6px;
+    margin-top: 24px;
+    padding: 11px 28px;
+    background: var(--dark);
+    color: var(--accent);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    border-radius: 8px;
     text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
 }
 
 .btn_contacto:hover {
-    background-color: #00d4ff;
-    color: #1a1a2e;
+    background: var(--accent);
+    color: var(--dark);
+    transform: scale(1.04);
 }
 
+/* ── FOOTER ─────────────────────────────────────────── */
 #pie {
-    width: 100%;
-    height: 50px;
-    background-color: #1a1a2e;
-    display: grid;
-    place-items: center;
+    background: var(--dark);
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #1e1e38;
 }
 
 #pie p {
-    color: #cccccc;
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    margin: 0;
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 300;
+    letter-spacing: 0.03em;
 }
 
-/* TABLET */
-@media all and (min-width: 600px) and (max-width: 1023px) {
-    #contenedor {
-        width: 580px;
-    }
-    .caja_cont {
-        width: 170px;
-    }
+/* ── FORMULARIO ─────────────────────────────────────── */
+#form_section {
+    flex: 1;
+    padding: 52px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* MOBILE */
-@media all and (max-width: 599px) {
-    #contenedor {
-        width: 90%;
-        height: auto;
-    }
-    #contenido {
-        height: auto;
-    }
-    .caja_cont {
-        width: auto;
-        height: auto;
-        margin: 10px 0;
-        padding: 20px 0;
-    }
+#titulo_form {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 800;
+    color: var(--dark);
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+#subtitulo_form {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 36px;
+    text-align: center;
+}
+
+#formulario {
+    width: 100%;
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+#formulario label {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--dark);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-top: 12px;
+}
+
+#formulario input,
+#formulario textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid #e0e0ee;
+    border-radius: 9px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--dark);
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#formulario input:focus,
+#formulario textarea:focus {
+    border-color: var(--accent2);
+    box-shadow: 0 0 0 3px rgba(123,92,250,0.12);
+}
+
+#formulario input[readonly] {
+    background: #f0f0f8;
+    color: var(--muted);
+    cursor: default;
+}
+
+#formulario textarea { resize: vertical; min-height: 120px; }
+
+#formulario button[type="submit"] {
+    margin-top: 20px;
+    padding: 14px;
+    background: var(--dark);
+    color: var(--accent);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+
+#formulario button[type="submit"]:hover {
+    background: var(--accent);
+    color: var(--dark);
+    transform: translateY(-2px);
+}
+
+#volver {
+    margin-top: 28px;
+    color: var(--accent2);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+#volver:hover { opacity: 0.7; }
+
+/* ── TABLET ─────────────────────────────────────────── */
+@media (min-width: 600px) and (max-width: 1023px) {
+    .caja_cont { width: 220px; }
+}
+
+/* ── MOBILE ─────────────────────────────────────────── */
+@media (max-width: 599px) {
+    #cabecera { padding: 36px 24px 32px; }
+    #contenido { padding: 32px 16px; }
+    .caja_cont { width: 100%; }
+    #pie { padding: 20px 16px; }
+    #pie p { text-align: center; }
 }
