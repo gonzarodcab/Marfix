@@ -1,64 +1,84 @@
 <!DOCTYPE html>
+
 <html lang="es">
-    <head>
-        <title>Contacto — MarFix</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="primer.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
+<head>
+    <title>Contacto — MarFix</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="primer.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-    <body>
-        <div id="contenedor">
+<body>
+    <div id="contenedor">
 
-            <header id="cabecera">
-                <h1>Mar<span>Fix</span></h1>
-                <p>Reparación y mantenimiento de computadoras</p>
-            </header>
+```
+    <header id="cabecera">
+        <h1>Mar<span>Fix</span></h1>
+        <p>Reparación y mantenimiento de computadoras</p>
+    </header>
 
-            <section id="form_section">
-                <h2 id="titulo_form">Formulario de contacto</h2>
-                <p id="subtitulo_form">Completá tus datos y te respondemos a la brevedad.</p>
+    <section id="form_section">
+        <h2 id="titulo_form">Formulario de contacto</h2>
+        <p id="subtitulo_form">Completá tus datos y te respondemos a la brevedad.</p>
 
-                <script src="https://api.info2sheets.com/info2sheets-form.js"></script>
+        <form id="formulario" data-info2sheets-form-id="48ef4daf-02ae-4302-9ade-c45a4ba2f4a4">
 
-<form data-info2sheets-form-id="48ef4daf-02ae-4302-9ade-c45a4ba2f4a4">
-                <form action="https://api.info2sheets.com/v1?key=48ef4daf-02ae-4302-9ade-c45a4ba2f4a4" method="POST" id="formulario">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
 
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="Ej: 351-123-4567" required>
 
-                    <label for="nombre">Nombre completo</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
+            <label for="mail">Correo electrónico</label>
+            <input type="email" id="mail" name="email" placeholder="Ej: juan@mail.com" required>
 
-                    <label for="telefono">Teléfono</label>
-                    <input type="tel" id="telefono" name="telefono" placeholder="Ej: 351-123-4567" required>
+            <label for="servicio">Servicio de interés</label>
+            <input type="text" id="servicio" name="servicio" readonly>
 
-                    <label for="mail">Correo electrónico</label>
-                    <input type="email" id="mail" name="email" placeholder="Ej: juan@mail.com" required>
+            <label for="consulta">Consulta</label>
+            <textarea id="consulta" name="consulta" rows="5" placeholder="Contanos qué le pasa a tu equipo..." required></textarea>
 
-                    <label for="servicio">Servicio de interés</label>
-                    <input type="text" id="servicio" name="servicio" readonly>
+            <button type="submit">Enviar consulta</button>
 
-                    <label for="consulta">Consulta</label>
-                    <textarea id="consulta" name="consulta" rows="5" placeholder="Contanos qué le pasa a tu equipo..." required></textarea>
+            <p id="mensaje-exito" style="display:none; color:green; margin-top:15px;">
+                ✅ Consulta enviada correctamente. Nos contactaremos a la brevedad.
+            </p>
 
-                    <button type="submit">Enviar consulta</button>
+        </form>
 
-                </form>
+        <a href="index.html" id="volver">← Volver al inicio</a>
+    </section>
 
-                <a href="index.html" id="volver">← Volver al inicio</a>
-            </section>
+    <footer id="pie">
+        <p>📞 3543694219 &nbsp;|&nbsp; ✉️ gonzalo3151@gmail.com &nbsp;|&nbsp; © 2026 MarFix</p>
+    </footer>
 
-            <footer id="pie">
-                <p>📞 3543694219 &nbsp;|&nbsp; ✉️ gonzalo3151@gmail.com &nbsp;|&nbsp; © 2026 MarFix</p>
-            </footer>
+</div>
 
-        </div>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const servicio = params.get('servicio');
 
-        <script>
-            const params = new URLSearchParams(window.location.search);
-            const servicio = params.get('servicio');
+    if (servicio) {
+        document.getElementById('servicio').value = servicio;
+    }
+</script>
+
+<script src="https://api.info2sheets.com/info2sheets-form.js"></script>
+
+<script>
+    document.getElementById("formulario").addEventListener("submit", function() {
+        setTimeout(() => {
+            document.getElementById("mensaje-exito").style.display = "block";
+            document.getElementById("formulario").reset();
+
             if (servicio) {
                 document.getElementById('servicio').value = servicio;
             }
-        </script>
-    </body>
+        }, 1500);
+    });
+</script>
+```
+
+</body>
 </html>
