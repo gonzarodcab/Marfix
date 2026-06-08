@@ -1,27 +1,25 @@
 <!DOCTYPE html>
-<html>
-   <head>
-    <title>Contacto - MarFix</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="primer.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
+<html lang="es">
+    <head>
+        <title>Contacto — MarFix</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="primer.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
 
     <body>
         <div id="contenedor">
 
             <header id="cabecera">
-                <h1>TechFix</h1>
+                <h1>Mar<span>Fix</span></h1>
                 <p>Reparación y mantenimiento de computadoras</p>
             </header>
 
             <section id="form_section">
                 <h2 id="titulo_form">Formulario de contacto</h2>
                 <p id="subtitulo_form">Completá tus datos y te respondemos a la brevedad.</p>
-<script src="https://api.info2sheets.com/info2sheets-form.js"></script>
 
-<form data-info2sheets-form-id="48ef4daf-02ae-4302-9ade-c45a4ba2f4a4">
-                <form action="https://api.info2sheets.com/v1?key=48ef4daf-02ae-4302-9ade-c45a4ba2f4a4" method="POST" id="formulario">
+                <form action="https://formspree.io/f/xzdwezln" method="POST" id="formulario">
 
                     <label for="nombre">Nombre completo</label>
                     <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
@@ -41,29 +39,15 @@
                     <button type="submit">Enviar consulta</button>
 
                 </form>
-               
 
                 <a href="index.html" id="volver">← Volver al inicio</a>
             </section>
 
             <footer id="pie">
-    <p>📞 3543694219 &nbsp;|&nbsp; ✉️ gonzalo3151@gmail.com &nbsp;|&nbsp; © 2026 Marfix</p>
-</footer>
-            
+                <p>📞 3543694219 &nbsp;|&nbsp; ✉️ gonzalo3151@gmail.com &nbsp;|&nbsp; © 2026 MarFix</p>
+            </footer>
 
         </div>
-
-        <script>
-            // Toma el parámetro "servicio" de la URL y lo pone en el campo
-            const params = new URLSearchParams(window.location.search);
-            const servicio = params.get('servicio');
-            if (servicio) {
-                document.getElementById('servicio').value = servicio;
-            }
-        </script>
-    </body>
-</html>
-
 
         <script>
             const params = new URLSearchParams(window.location.search);
