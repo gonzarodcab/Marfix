@@ -1,48 +1,186 @@
-
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Reparación de PC</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="primer.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
+<html lang="es">
+<head>
+    <title>MarFix — Reparación de PC</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos propios -->
+    <link rel="stylesheet" href="primer.css">
+</head>
+<body>
 
-    <body>
-        <div id="contenedor">
+<div id="contenedor">
 
-            <header id="cabecera">
-                <h1>MarFix</h1>
-                <p>Reparación y mantenimiento de computadoras</p>
-            </header>
+    <!-- HEADER -->
+    <header id="cabecera">
+        <h1>Mar<span>Fix</span></h1>
+        <p>Reparación y mantenimiento de computadoras</p>
+    </header>
 
-            <section id="contenido">
-                <article class="caja_cont">
+    <!-- SERVICIOS -->
+    <section id="contenido">
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-12 col-md-4">
+                <div class="caja_cont">
                     <img src="https://cdn-icons-png.flaticon.com/512/2906/2906274.png" alt="Diagnóstico">
                     <h2>Diagnóstico</h2>
                     <p>Revisamos tu equipo y te decimos exactamente qué tiene.</p>
                     <a href="formulario.html?servicio=Diagnostico" class="btn_contacto">Consultar</a>
-                </article>
-                <article class="caja_cont">
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="caja_cont">
                     <img src="https://cdn-icons-png.flaticon.com/512/1005/1005141.png" alt="Reparación">
                     <h2>Reparación</h2>
                     <p>Arreglamos hardware y software con garantía de 90 días.</p>
                     <a href="formulario.html?servicio=Reparacion" class="btn_contacto">Consultar</a>
-                </article>
-                <article class="caja_cont">
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="caja_cont">
                     <img src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png" alt="Mantenimiento">
                     <h2>Mantenimiento</h2>
                     <p>Limpieza, actualización y optimización de tu equipo.</p>
                     <a href="formulario.html?servicio=Mantenimiento" class="btn_contacto">Consultar</a>
-                </article>
-            </section>
-
-            <footer id="pie">
-                <p>📞 3543694219 &nbsp;|&nbsp; ✉️ gonzalo3151@gmail.com &nbsp;|&nbsp; © 2026 Marfix</p>
-            </footer>
+                </div>
+            </div>
 
         </div>
-    </body>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="pie">
+        <p>📞 3543694219 &nbsp;|&nbsp; ✉️ gonzalo3151@gmail.com &nbsp;|&nbsp; © 2026 MarFix</p>
+    </footer>
+
+</div>
+
+<!-- ── CHATBOT ─────────────────────────────────── -->
+<div id="chat-btn" title="Chat MarFix">💬</div>
+
+<div id="chat-box">
+    <div id="chat-header">Asistente MarFix</div>
+    <div id="chat-messages"></div>
+    <div id="chat-input-area">
+        <input type="text" id="user-input" placeholder="Escribí tu consulta...">
+        <button id="chat-send" onclick="sendMessage()">➤</button>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // ── Historial de conversación para Claude ──────────────
+    const historial = [];
+
+    const SYSTEM_PROMPT = `Sos el asistente virtual de MarFix, un negocio de reparación y mantenimiento de computadoras.
+Respondé siempre en español rioplatense (vos, che, etc.), de forma amigable, breve y útil.
+Solo respondés preguntas relacionadas con los servicios de MarFix o tecnología general.
+Si te preguntan algo completamente fuera de tema, redirigí amablemente a los servicios.
+
+Información del negocio:
+- Servicios: Diagnóstico, Reparación de hardware/software (garantía 90 días), Mantenimiento (limpieza, optimización), Instalación de Windows, Solución de problemas de WiFi/red.
+- Contacto: Teléfono 3543-694219, Email gonzalo3151@gmail.com
+- Para solicitar un turno o consulta formal, el cliente puede usar el formulario del sitio.
+- Precios: no tenemos precios fijos, depende del diagnóstico. El diagnóstico inicial es gratuito.
+- Zona de atención: Córdoba, Argentina.
+Respondé en no más de 2-3 oraciones cortas. Sé directo y cálido.`;
+
+    // ── Abrir/cerrar chat ──────────────────────────────────
+    document.getElementById("chat-btn").onclick = function () {
+        const box = document.getElementById("chat-box");
+        const open = box.style.display === "block";
+        box.style.display = open ? "none" : "block";
+        if (!open && document.getElementById("chat-messages").innerHTML === "") {
+            mostrarBienvenida();
+        }
+    };
+
+    function mostrarBienvenida() {
+        agregarMensaje("bot", "¡Hola! 👋 Soy el asistente de <b>MarFix</b>. Podés preguntarme lo que quieras sobre nuestros servicios de reparación y mantenimiento.");
+    }
+
+    // ── Agregar burbuja al chat ────────────────────────────
+    function agregarMensaje(tipo, html) {
+        const chat = document.getElementById("chat-messages");
+        const burbuja = document.createElement("div");
+        burbuja.className = `burbuja burbuja-${tipo}`;
+        burbuja.innerHTML = html;
+        chat.appendChild(burbuja);
+        chat.scrollTop = chat.scrollHeight;
+        return burbuja;
+    }
+
+    // ── Indicador de escritura ─────────────────────────────
+    function mostrarTyping() {
+        const chat = document.getElementById("chat-messages");
+        const typing = document.createElement("div");
+        typing.className = "burbuja burbuja-bot typing-indicator";
+        typing.id = "typing";
+        typing.innerHTML = "<span></span><span></span><span></span>";
+        chat.appendChild(typing);
+        chat.scrollTop = chat.scrollHeight;
+    }
+
+    function quitarTyping() {
+        const t = document.getElementById("typing");
+        if (t) t.remove();
+    }
+
+    // ── Enviar mensaje a Claude ────────────────────────────
+    async function sendMessage() {
+        const input = document.getElementById("user-input");
+        const texto = input.value.trim();
+        if (!texto) return;
+
+        input.value = "";
+        input.disabled = true;
+        document.getElementById("chat-send").disabled = true;
+
+        agregarMensaje("user", texto);
+        historial.push({ role: "user", content: texto });
+
+        mostrarTyping();
+
+        try {
+            const response = await fetch("https://api.anthropic.com/v1/messages", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    model: "claude-sonnet-4-6",
+                    max_tokens: 1000,
+                    system: SYSTEM_PROMPT,
+                    messages: historial
+                })
+            });
+
+            const data = await response.json();
+            const respuesta = data.content?.[0]?.text || "No pude procesar tu consulta. Contactanos al 3543-694219.";
+
+            quitarTyping();
+            agregarMensaje("bot", respuesta);
+            historial.push({ role: "assistant", content: respuesta });
+
+        } catch (err) {
+            quitarTyping();
+            agregarMensaje("bot", "Ups, hubo un error de conexión. Contactanos al 3543-694219.");
+        }
+
+        input.disabled = false;
+        document.getElementById("chat-send").disabled = false;
+        input.focus();
+    }
+
+    document.getElementById("user-input").addEventListener("keypress", e => {
+        if (e.key === "Enter") sendMessage();
+    });
+</script>
+
+</body>
 </html>
-
-

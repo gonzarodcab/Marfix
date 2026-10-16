@@ -1,84 +1,78 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
     <title>Contacto — MarFix</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="primer.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos propios -->
+    <link rel="stylesheet" href="primer.css">
+    <!-- Info2Sheets -->
+    <script src="https://api.info2sheets.com/info2sheets-form.js"></script>
 </head>
-
 <body>
-    <div id="contenedor">
 
-```
+<div id="contenedor">
+
+    <!-- HEADER -->
     <header id="cabecera">
         <h1>Mar<span>Fix</span></h1>
         <p>Reparación y mantenimiento de computadoras</p>
     </header>
 
+    <!-- FORMULARIO -->
     <section id="form_section">
         <h2 id="titulo_form">Formulario de contacto</h2>
         <p id="subtitulo_form">Completá tus datos y te respondemos a la brevedad.</p>
 
-        <form id="formulario" data-info2sheets-form-id="48ef4daf-02ae-4302-9ade-c45a4ba2f4a4">
-
+        <form
+            action="https://api.info2sheets.com/v1?key=48ef4daf-02ae-4302-9ade-c45a4ba2f4a4"
+            method="POST"
+            id="formulario"
+            data-info2sheets-form-id="48ef4daf-02ae-4302-9ade-c45a4ba2f4a4"
+        >
             <label for="nombre">Nombre completo</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
+            <input class="form-control" type="text" id="nombre" name="nombre"
+                   placeholder="Ej: Juan Pérez" required>
 
             <label for="telefono">Teléfono</label>
-            <input type="tel" id="telefono" name="telefono" placeholder="Ej: 351-123-4567" required>
+            <input class="form-control" type="tel" id="telefono" name="telefono"
+                   placeholder="Ej: 351-123-4567" required>
 
             <label for="mail">Correo electrónico</label>
-            <input type="email" id="mail" name="email" placeholder="Ej: juan@mail.com" required>
+            <input class="form-control" type="email" id="mail" name="email"
+                   placeholder="Ej: juan@mail.com" required>
 
             <label for="servicio">Servicio de interés</label>
-            <input type="text" id="servicio" name="servicio" readonly>
+            <input class="form-control" type="text" id="servicio" name="servicio" readonly>
 
             <label for="consulta">Consulta</label>
-            <textarea id="consulta" name="consulta" rows="5" placeholder="Contanos qué le pasa a tu equipo..." required></textarea>
+            <textarea class="form-control" id="consulta" name="consulta"
+                      placeholder="Contanos qué le pasa a tu equipo..." required></textarea>
 
-            <button type="submit">Enviar consulta</button>
-
-            <p id="mensaje-exito" style="display:none; color:green; margin-top:15px;">
-                ✅ Consulta enviada correctamente. Nos contactaremos a la brevedad.
-            </p>
-
+            <button type="submit" class="btn-submit">Enviar consulta</button>
         </form>
 
         <a href="index.html" id="volver">← Volver al inicio</a>
     </section>
 
+    <!-- FOOTER -->
     <footer id="pie">
         <p>📞 3543694219 &nbsp;|&nbsp; ✉️ gonzalo3151@gmail.com &nbsp;|&nbsp; © 2026 MarFix</p>
     </footer>
 
 </div>
 
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
+    // Autocompleta el campo "servicio" desde la URL
     const params = new URLSearchParams(window.location.search);
     const servicio = params.get('servicio');
-
-    if (servicio) {
-        document.getElementById('servicio').value = servicio;
-    }
+    if (servicio) document.getElementById('servicio').value = servicio;
 </script>
-
-<script src="https://api.info2sheets.com/info2sheets-form.js"></script>
-
-<script>
-    document.getElementById("formulario").addEventListener("submit", function() {
-        setTimeout(() => {
-            document.getElementById("mensaje-exito").style.display = "block";
-            document.getElementById("formulario").reset();
-
-            if (servicio) {
-                document.getElementById('servicio').value = servicio;
-            }
-        }, 1500);
-    });
-</script>
-
 
 </body>
 </html>
